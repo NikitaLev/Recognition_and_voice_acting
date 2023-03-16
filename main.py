@@ -5,7 +5,7 @@ import sys
 import sounddevice as sd
 import queue
 
-model = vosk.Model("model")
+model = vosk.Model("model_s")
 samplerate = 16000
 q = queue.Queue()
 device = 2
@@ -28,10 +28,8 @@ def va_listen():
                 print(rec.Result())
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print(1)
     task_listen = threading.Thread(name="listen_step_1", target=va_listen)
     task_listen.start()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
