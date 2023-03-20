@@ -22,8 +22,9 @@ def silero_stt_test():
     assert language in available_languages
 
     # load the actual tf model
-    torch.hub.download_url_to_file(models.stt_models.en.latest.tf, 'tf_model.tar.gz')
-    subprocess.run('rm -rf tf_model && mkdir tf_model && tar xzfv tf_model.tar.gz -C tf_model', shell=True, check=True)
+    torch.hub.download_url_to_file(models.stt_models.en.v1.tf, 'tf_model.tar.gz')
+    #subprocess.run('rm -rf tf_model && mkdir tf_model && tar xzfv tf_model.tar.gz -C tf_model', shell=True, check=True)
+    subprocess.run('mkdir tf_model && tar xzfv tf_model.tar.gz -C tf_model', shell=True, check=True)
     tf_model = tf.saved_model.load('tf_model')
 
     # download a single file in any format compatible with TorchAudio
