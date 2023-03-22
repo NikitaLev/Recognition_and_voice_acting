@@ -34,33 +34,35 @@ def test_ru():
     sd.stop()
 
 
-def test_en():
-    device = torch.device('cpu')
-    torch.set_num_threads(4)
-    local_file = 'model_en.pt'
+device = torch.device('cpu')
+torch.set_num_threads(4)
+local_file = 'model_en.pt'
+if not os.path.isfile(local_file):
+    torch.hub.download_url_to_file('https://models.silero.ai/models/tts/en/v3_en.pt',
+                                   local_file)
+model = torch.package.PackageImporter(local_file).load_pickle("tts_models", "model")
+model.to(device)
 
-    if not os.path.isfile(local_file):
-        torch.hub.download_url_to_file('https://models.silero.ai/models/tts/en/v3_en.pt',
-                                       local_file)
+sample_rate = 48000
+speaker = 'en_0'
 
-    model = torch.package.PackageImporter(local_file).load_pickle("tts_models", "model")
-    model.to(device)
 
-    example_text = 'the birch canoe slid on the smooth planks grew the sheet to the dark blue background it\'s easy to tell the depth of a well four hours of steady work faced us'
-    sample_rate = 48000
-    speaker = 'en_0'
+def test_en(count=0, example_text=''):
+    print(count)
 
     audio_paths = model.save_wav(text=example_text,
                                  speaker=speaker,
-                                 sample_rate=sample_rate)
+                                 sample_rate=sample_rate
+                                 )
+    # print(audio_paths)
 
-    audio = model.apply_tts(text=example_text,
+
+"""    audio = model.apply_tts(text=example_text,
                             speaker=speaker,
                             sample_rate=sample_rate)
     sd.play(audio, sample_rate * 0.9)
     time.sleep((len(audio) / (sample_rate * 0.9)))
-    sd.stop()
-
+    sd.stop()"""
 
 """language = 'ru'
 model_id = 'ru_v3'
