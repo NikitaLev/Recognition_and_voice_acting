@@ -32,7 +32,8 @@ def va_listen():
 
 if __name__ == '__main__':
     #stt_silero.silero_stt_test()
-    speaker.test()
+    #speaker.test_ru()
+    speaker.test_en()
     #speaker.va_speak('Съ+ешьте ещ+ё +этих м+ягких франц+узских б+улочек, д+а в+ыпейте ч+аю.')
     #task_listen = threading.Thread(name="listen_step_1", target=va_listen)
     #task_listen.start()
