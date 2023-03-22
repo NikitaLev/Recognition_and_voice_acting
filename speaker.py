@@ -24,6 +24,13 @@ def test():
     audio_paths = model.save_wav(text=example_text,
                                  speaker=speaker,
                                  sample_rate=sample_rate)
+
+    audio = model.apply_tts(text=example_text,
+                            speaker=speaker,
+                            sample_rate=sample_rate)
+    sd.play(audio, sample_rate * 0.95)
+    time.sleep((len(audio) / (sample_rate * 0.95)))
+    sd.stop()
 """language = 'ru'
 model_id = 'ru_v3'
 
