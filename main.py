@@ -17,7 +17,8 @@ model = vosk.Model("model_s")
 samplerate = 16000
 q = queue.Queue()
 device = 2
-str_ex = 'the birch canoe slid on the smooth planks glue the sheet to the dark blue background it\'s easy to tell the depth of a well four hours of steady work faced us'
+str_ex = 'the birch canoe slid on the smooth planks glue the sheet to the dark blue background it\'s easy to tell the ' \
+         'depth of a well four hours of steady work faced us'
 
 
 def q_callback(indata, frames, time, status):
@@ -108,8 +109,13 @@ def silero_test(filename):
 
 
 if __name__ == '__main__':
+    name_file1 = 'en_sample_1_16k.wav'
+    params1 = {"filename": name_file1}
+    task_file1 = threading.Thread(name="listen_silero_1", target=silero_test, kwargs=params1)
+    task_file1.start()
+    """
     speaker.va_speak('Съ+ешьте ещ+ё +этих м+ягких франц+узских б+улочек, д+а в+ыпейте ч+аю.')
-    """name_file1 = 'en_sample_1_8k.wav'
+    name_file1 = 'en_sample_1_8k.wav'
     params1 = {"filename": name_file1}
     task_file1 = threading.Thread(name="listen_silero_1", target=silero_test, kwargs=params1)
     task_file1.start()

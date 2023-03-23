@@ -7,11 +7,6 @@ from glob import glob
 
 from silero.utils import *
 
-utils = (read_batch,
-         split_into_batches,
-         read_audio,
-         prepare_model_input)
-
 
 def silero_stt_test(name):
     """    language = 'ru'
@@ -31,9 +26,6 @@ def silero_stt_test(name):
     decoder = Decoder(model.labels)
 
     # model, decoder, utils = torch.package.PackageImporter(local_file).load_pickle("stt_models", "model")
-
-    (read_batch, split_into_batches,
-     read_audio, prepare_model_input) = utils  # see function signature for details
 
     # download a single file in any format compatible with TorchAudio
     test_files = glob(name)
